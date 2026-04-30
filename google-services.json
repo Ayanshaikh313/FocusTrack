@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "648049384815",
+    "project_id": "focustrack-d7d90",
+    "storage_bucket": "focustrack-d7d90.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648049384815:android:56f733869ae04dabd21c9a",
+        "android_client_info": {
+          "package_name": "com.ayanshaikh.focustrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKxrEjefUdwzKHKqskXTnNe9j8kactPr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
