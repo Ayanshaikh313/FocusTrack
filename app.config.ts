@@ -11,7 +11,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     backgroundColor: "#1a1a2e",
   },
   android: {
-    package: "com.yourcompany.focustrack", // replace yourcompany with your name
+    package: "com.ayanshaikh.focustrack",
+    googleServicesFile: "./google-services.json",
     permissions: [
       "android.permission.PACKAGE_USAGE_STATS",
       "android.permission.FOREGROUND_SERVICE",
@@ -21,6 +22,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   plugins: [
     "expo-router",
+    "@react-native-firebase/app",
     "expo-font",
     "expo-asset",
     [

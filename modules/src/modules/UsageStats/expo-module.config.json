@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android", "web"],
+  "apple": {
+    "modules": ["UsageStatsModule"]
+  },
+  "android": {
+    "modules": ["com.focustrack.usagestats.UsageStatsModule"]
+  }
+}
