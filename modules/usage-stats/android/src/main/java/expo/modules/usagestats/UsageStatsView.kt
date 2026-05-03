@@ -1,4 +1,4 @@
-package com.focustrack.usagestats
+package expo.modules.usagestats
 
 import android.content.Context
 import android.webkit.WebView

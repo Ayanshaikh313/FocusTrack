@@ -13,7 +13,7 @@ import {
 import Svg, { Circle, Line, Path, Polyline } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import auth from "@react-native-firebase/auth";
-import { useMockUsage } from "../../src/hooks/useMockUsage";
+import { useRealUsage } from "../../src/hooks/useRealUsage";
 import { AppUsage, useUsageStore } from "../../src/store/usageStore";
 
 const PAGE_BG = "#f5f3f1";
@@ -351,7 +351,7 @@ function AppListCard({ apps, totalMinutes }: { apps: AppUsage[]; totalMinutes: n
 }
 
 export default function DashboardScreen() {
-  useMockUsage();
+const { hasPermission } = useRealUsage();
   const insets = useSafeAreaInsets();
   const { todayUsage } = useUsageStore();
   const user = auth().currentUser;

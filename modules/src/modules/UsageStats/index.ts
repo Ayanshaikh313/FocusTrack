@@ -1,5 +1,23 @@
-// Reexport the native module. On web, it will be resolved to UsageStatsModule.web.ts
-// and on native platforms to UsageStatsModule.ts
-export { default } from './src/UsageStatsModule';
-export { default as UsageStatsView } from './src/UsageStatsView';
-export * from  './src/UsageStats.types';
+// src/modules/UsageStats/index.ts
+import { NativeModule, requireNativeModule } from "expo-modules-core";
+
+export interface AppUsageStat {
+  appName: string;
+  packageName: string;
+  duration: number; // minutes
+  category: "social" | "entertainment" | "productivity" | "other";
+}
+
+export interface WeeklyDay {
+  date: string;
+  totalMinutes: number;
+}
+
+declare class UsageStatsModule extends NativeModule {
+  hasPermission(): boolean;
+  requestPermission(): void;
+  getDailyUsage(): AppUsageStat[];
+  getWeeklyUsage(): WeeklyDay[];
+}
+
+export default requireNativeModule<UsageStatsModule>("UsageStats");

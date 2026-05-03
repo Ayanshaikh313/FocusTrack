@@ -3,11 +3,11 @@ plugins {
   id 'expo-module-gradle-plugin'
 }
 
-group = 'com.focustrack.usagestats'
+group = 'expo.modules.usagestats'
 version = '0.7.10'
 
 android {
-  namespace "com.focustrack.usagestats"
+  namespace "expo.modules.usagestats"
   defaultConfig {
     versionCode 1
     versionName "0.7.10"

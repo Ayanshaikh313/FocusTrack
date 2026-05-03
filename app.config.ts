@@ -27,8 +27,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-asset",
     [
       "expo-notifications",
+      
       {},
     ],
+    "./src/modules/UsageStats",
     [
       "expo-background-fetch",
       {
