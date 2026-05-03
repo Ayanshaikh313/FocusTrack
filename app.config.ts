@@ -6,17 +6,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: "focustrack",
   version: "1.0.0",
   orientation: "portrait",
-  icon: "./assets/icon.png",
   splash: {
-    image: "./assets/splash-icon.png",  // changed from splash.png
+    image: "./assets/splash-icon.png",
     backgroundColor: "#1a1a2e",
   },
   android: {
     package: "com.yourcompany.focustrack", // replace yourcompany with your name
-    adaptiveIcon: {
-      foregroundImage: "./assets/adaptive-icon.png",
-      backgroundColor: "#1a1a2e",
-    },
     permissions: [
       "android.permission.PACKAGE_USAGE_STATS",
       "android.permission.FOREGROUND_SERVICE",
@@ -30,10 +25,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-asset",
     [
       "expo-notifications",
-      {
-        color: "#6c63ff",
-        // removed notification-icon.png since file doesn't exist yet
-      },
+      {},
     ],
     [
       "expo-background-fetch",

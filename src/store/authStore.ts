@@ -40,6 +40,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
   signOut: async () => {
     await auth().signOut();
-    set({ user: null });
+    set({ user: null  });
   },
 }));
