@@ -12,6 +12,11 @@ export type WeeklyDay = {
   totalMinutes: number;
 };
 
+export type HourlyData = {
+  hour: number;
+  minutes: number;
+};
+
 export type OnLoadEventPayload = {
   url: string;
 };

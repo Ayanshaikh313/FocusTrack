@@ -133,6 +133,41 @@ class UsageStatsModule : Module() {
       result
     }
   }
+  // Get hourly usage for today
+Function("getHourlyUsage") {
+  val context = appContext.reactContext ?: return@Function emptyList<Map<String, Any>>()
+  val usageStatsManager = context.getSystemService(Context.USAGE_STATS_SERVICE)
+    as UsageStatsManager
+
+  val result = mutableListOf<Map<String, Any>>()
+
+  repeat(24) { hour ->
+    val calendar = Calendar.getInstance()
+    calendar.set(Calendar.HOUR_OF_DAY, hour)
+    calendar.set(Calendar.MINUTE, 0)
+    calendar.set(Calendar.SECOND, 0)
+    val startTime = calendar.timeInMillis
+    calendar.set(Calendar.MINUTE, 59)
+    calendar.set(Calendar.SECOND, 59)
+    val endTime = calendar.timeInMillis
+
+    if (endTime > System.currentTimeMillis()) {
+      result.add(mapOf("hour" to hour, "minutes" to 0))
+      return@repeat
+    }
+
+    val stats = usageStatsManager.queryUsageStats(
+      UsageStatsManager.INTERVAL_BEST,
+      startTime,
+      endTime
+    )
+
+    val totalMinutes = stats.sumOf { it.totalTimeInForeground / 1000 / 60 }.toInt()
+    result.add(mapOf("hour" to hour, "minutes" to totalMinutes))
+  }
+
+  result
+}
 
   // Categorise apps by package name
   private fun getCategoryForPackage(packageName: String): String {

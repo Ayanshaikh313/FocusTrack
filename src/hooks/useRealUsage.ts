@@ -2,25 +2,23 @@
 import { useEffect, useState } from "react";
 import { AppState } from "react-native";
 import UsageStatsModule from "../../modules/usage-stats";
-import { useUsageStore } from "../store/usageStore";
+import { HourlyData, useUsageStore } from "../store/usageStore";
 
 export function useRealUsage() {
   const [hasPermission, setHasPermission] = useState(false);
-  const { setTodayUsage, setWeeklyUsage } = useUsageStore();
+  const { setTodayUsage, setWeeklyUsage, setHourlyUsage } = useUsageStore();
 
   const checkAndLoad = async () => {
     const permitted = UsageStatsModule.hasPermission();
     setHasPermission(permitted);
 
     if (!permitted) {
-      UsageStatsModule.requestPermission(); // opens settings
+      UsageStatsModule.requestPermission();
       return;
     }
 
-    // Load real data
     const daily = UsageStatsModule.getDailyUsage();
     const weekly = UsageStatsModule.getWeeklyUsage();
-
     const totalMinutes = daily.reduce((sum, app) => sum + app.duration, 0);
 
     setTodayUsage({
@@ -30,12 +28,17 @@ export function useRealUsage() {
     });
 
     setWeeklyUsage(weekly);
+
+    // Safe check — only works after new EAS build with getHourlyUsage in Kotlin
+    if (typeof UsageStatsModule.getHourlyUsage === "function") {
+      const hourly = UsageStatsModule.getHourlyUsage() as HourlyData[];
+      setHourlyUsage(hourly);
+    }
   };
 
   useEffect(() => {
     checkAndLoad();
 
-    // Reload when user comes back from settings
     const sub = AppState.addEventListener("change", (state) => {
       if (state === "active") checkAndLoad();
     });

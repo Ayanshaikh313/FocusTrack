@@ -34,10 +34,11 @@ class UsageStatsModule : Module() {
     }
 
     Function("requestPermission") {
-      val context = appContext.reactContext ?: return@Function
+      val context = appContext.reactContext ?: return@Function null
       val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
       intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
       context.startActivity(intent)
+      null
     }
 
     Function("getDailyUsage") {
