@@ -30,7 +30,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       
       {},
     ],
-    "./src/modules/UsageStats",
     [
       "expo-background-fetch",
       {

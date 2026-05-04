@@ -1,6 +1,13 @@
 // src/services/ai.ts
 const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
+type UsageStats = {
+  appName: string;
+  packageName: string;
+  duration: number;
+  category: "social" | "entertainment" | "productivity" | "other";
+};
+
 export async function getAIInsights(usageData: UsageStats[]) {
   const prompt = `
     Analyze this screen time data and give 3 short, friendly insights:

@@ -14,12 +14,17 @@ export interface DailyUsage {
   apps: AppUsage[];
 }
 
+export interface WeeklyUsage {
+  date: string;
+  totalMinutes: number;
+}
+
 interface UsageStore {
   todayUsage: DailyUsage | null;
-  weeklyUsage: DailyUsage[];
+  weeklyUsage: WeeklyUsage[];
   dailyGoalMinutes: number;
   setTodayUsage: (usage: DailyUsage) => void;
-  setWeeklyUsage: (usage: DailyUsage[]) => void;
+  setWeeklyUsage: (usage: WeeklyUsage[]) => void;
   setDailyGoal: (minutes: number) => void;
 }
 

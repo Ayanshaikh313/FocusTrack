@@ -1,11 +1,12 @@
 import { NativeModule, requireNativeModule } from 'expo';
 
-import { UsageStatsModuleEvents } from './UsageStats.types';
+import { AppUsageStat, UsageStatsModuleEvents, WeeklyDay } from './UsageStats.types';
 
 declare class UsageStatsModule extends NativeModule<UsageStatsModuleEvents> {
-  PI: number;
-  hello(): string;
-  setValueAsync(value: string): Promise<void>;
+  hasPermission(): boolean;
+  requestPermission(): void;
+  getDailyUsage(): AppUsageStat[];
+  getWeeklyUsage(): WeeklyDay[];
 }
 
 // This call loads the native module object from the JSI.
